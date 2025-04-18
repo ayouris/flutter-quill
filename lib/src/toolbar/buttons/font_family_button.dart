@@ -5,6 +5,7 @@ import '../../document/attribute.dart';
 import '../../l10n/extensions/localizations_ext.dart';
 import '../base_button/base_value_button.dart';
 import '../simple_toolbar.dart';
+import 'package:nawat_mobile/core/theme/app_theme.dart';
 
 class QuillToolbarFontFamilyButton extends QuillToolbarBaseButton<
     QuillToolbarFontFamilyButtonOptions,
@@ -146,9 +147,7 @@ class QuillToolbarFontFamilyButtonState extends QuillToolbarBaseButtonState<
                 style: TextStyle(
                   fontFamily:
                       options.renderFontFamilies ? fontFamily.value : null,
-                  color: fontFamily.value == 'Clear'
-                      ? options.defaultItemColor
-                      : null,
+                  color: AppThemeConfig().iconPrimary,
                 ),
               ),
             ),
@@ -192,12 +191,14 @@ class QuillToolbarFontFamilyButtonState extends QuillToolbarBaseButtonState<
               style: options.style ??
                   TextStyle(
                     fontSize: iconSize / 1.15,
+                    color: AppThemeConfig().iconPrimary,
                   ),
             ),
           ),
           Icon(
             Icons.arrow_drop_down,
             size: iconSize * iconButtonFactor,
+            color: AppThemeConfig().iconPrimary,
           )
         ],
       ),

@@ -7,6 +7,7 @@ import '../../l10n/extensions/localizations_ext.dart';
 import '../base_button/base_value_button.dart';
 import '../simple_toolbar.dart';
 import '../theme/quill_icon_theme.dart';
+import 'package:nawat_mobile/core/theme/app_theme.dart';
 
 typedef ToggleStyleButtonBuilder = Widget Function(
   BuildContext context,
@@ -175,6 +176,7 @@ Widget defaultToggleStyleButtonBuilder(
     icon: Icon(
       icon,
       size: iconSize * iconButtonFactor,
+      color: AppThemeConfig().iconPrimary,
     ),
     isSelected: isEnabled ? isToggled == true : false,
     onPressed: onPressed,

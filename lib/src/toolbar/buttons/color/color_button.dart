@@ -9,6 +9,7 @@ import '../../base_button/base_value_button.dart';
 import '../../config/buttons/color_options.dart';
 import '../quill_icon_button.dart';
 import 'color_dialog.dart';
+import 'package:nawat_mobile/core/theme/app_theme.dart';
 
 typedef QuillToolbarColorBaseButton = QuillToolbarBaseButton<
     QuillToolbarColorButtonOptions, QuillToolbarColorButtonExtraOptions>;
@@ -155,7 +156,8 @@ class QuillToolbarColorButtonState extends QuillToolbarColorBaseButtonState {
       iconTheme: iconTheme,
       icon: Icon(
         iconData,
-        color: widget.isBackground ? iconColorBackground : iconColor,
+        color: AppThemeConfig().iconPrimary,
+        // color: AppThemeConfig().iconPrimary,
         size: iconSize * iconButtonFactor,
       ),
       onPressed: _showColorPicker,

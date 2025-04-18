@@ -7,6 +7,8 @@ import '../../l10n/extensions/localizations_ext.dart';
 import '../base_button/base_value_button.dart';
 import '../simple_toolbar.dart';
 
+import 'package:nawat_mobile/core/theme/app_theme.dart';
+
 class QuillToolbarFontSizeButton extends QuillToolbarBaseButton<
     QuillToolbarFontSizeButtonOptions, QuillToolbarFontSizeButtonExtraOptions> {
   QuillToolbarFontSizeButton({
@@ -137,7 +139,7 @@ class QuillToolbarFontSizeButtonState extends QuillToolbarBaseButtonState<
           child: Text(
             fontSize.key.toString(),
             style: TextStyle(
-              color: fontSize.value == '0' ? options.defaultItemColor : null,
+              color: AppThemeConfig().iconPrimary,
             ),
           ),
         );
@@ -180,12 +182,14 @@ class QuillToolbarFontSizeButtonState extends QuillToolbarBaseButtonState<
               style: options.style ??
                   TextStyle(
                     fontSize: iconSize / 1.15,
+                    color: AppThemeConfig().iconPrimary,
                   ),
             ),
           ),
           Icon(
             Icons.arrow_drop_down,
             size: iconSize * iconButtonFactor,
+            color: AppThemeConfig().iconPrimary,
           )
         ],
       ),

@@ -9,7 +9,7 @@ import '../config/buttons/link_style_options.dart';
 import '../structs/link_dialog_action.dart';
 import '../theme/quill_dialog_theme.dart';
 import 'quill_icon_button.dart';
-
+import 'package:nawat_mobile/core/theme/app_theme.dart';
 typedef QuillToolbarLinkStyleBaseButton = QuillToolbarBaseButton<
     QuillToolbarLinkStyleButtonOptions,
     QuillToolbarLinkStyleButtonExtraOptions>;
@@ -91,6 +91,7 @@ class QuillToolbarLinkStyleButtonState
       icon: Icon(
         iconData,
         size: iconSize * iconButtonFactor,
+          color: AppThemeConfig().iconPrimary,
       ),
       isSelected: isToggled,
       onPressed: () => _openLinkDialog(context),

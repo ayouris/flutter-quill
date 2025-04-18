@@ -7,6 +7,7 @@ import '../../../l10n/extensions/localizations_ext.dart';
 import '../../base_button/base_value_button.dart';
 import '../../config/buttons/select_header_style_buttons_options.dart';
 import '../quill_icon_button.dart';
+import 'package:nawat_mobile/core/theme/app_theme.dart';
 
 typedef QuillToolbarSelectHeaderStyleBaseButtons = QuillToolbarBaseButton<
     QuillToolbarSelectHeaderStyleButtonsOptions,
@@ -97,6 +98,7 @@ class QuillToolbarSelectHeaderStyleButtonsState
     final style = TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: iconSize * 0.7,
+      color: AppThemeConfig().iconPrimary,
     );
 
     final childBuilder = this.childBuilder;
@@ -127,9 +129,7 @@ class QuillToolbarSelectHeaderStyleButtonsState
                   'attribute',
                 )),
             style: style.copyWith(
-              color: isSelected
-                  ? iconTheme?.iconButtonSelectedData?.color
-                  : iconTheme?.iconButtonUnselectedData?.color,
+              color: AppThemeConfig().iconPrimary,
             ),
           ),
         ),

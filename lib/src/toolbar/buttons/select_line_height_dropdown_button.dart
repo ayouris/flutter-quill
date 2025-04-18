@@ -6,6 +6,7 @@ import '../base_button/base_value_button.dart';
 import '../config/buttons/select_line_height_style_dropdown_button_options.dart';
 import '../theme/quill_icon_theme.dart';
 import 'quill_icon_button.dart';
+import 'package:nawat_mobile/core/theme/app_theme.dart';
 
 typedef QuillToolbarSelectLineHeightStyleDropdownBaseButton
     = QuillToolbarBaseButton<
@@ -159,11 +160,13 @@ class _QuillToolbarSelectLineHeightStyleDropdownButtonState
                   style: widget.options.textStyle ??
                       TextStyle(
                         fontSize: iconSize / 1.15,
+                        color: AppThemeConfig().iconPrimary,
                       ),
                 ),
                 Icon(
                   Icons.arrow_drop_down,
                   size: iconSize * iconButtonFactor,
+                  color: AppThemeConfig().iconPrimary,
                 ),
               ],
             );

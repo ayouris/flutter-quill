@@ -4,13 +4,14 @@ import '../../l10n/extensions/localizations_ext.dart';
 import '../base_button/base_value_button.dart';
 import '../config/buttons/history_options.dart';
 import 'quill_icon_button.dart';
+import 'package:nawat_mobile/core/theme/app_theme.dart';
 
 typedef QuillToolbarHistoryBaseButton = QuillToolbarBaseButton<
     QuillToolbarHistoryButtonOptions, QuillToolbarHistoryButtonExtraOptions>;
 
 typedef QuillToolbarHistoryBaseButtonState<W extends QuillToolbarHistoryButton>
-    = QuillToolbarCommonButtonState<W, QuillToolbarHistoryButtonOptions,
-        QuillToolbarHistoryButtonExtraOptions>;
+= QuillToolbarCommonButtonState<W, QuillToolbarHistoryButtonOptions,
+    QuillToolbarHistoryButtonExtraOptions>;
 
 class QuillToolbarHistoryButton extends QuillToolbarHistoryBaseButton {
   const QuillToolbarHistoryButton({
@@ -84,6 +85,7 @@ class QuillToolbarHistoryButtonState
       icon: Icon(
         iconData,
         size: iconSize * iconButtonFactor,
+        color: AppThemeConfig().iconPrimary,
       ),
       isSelected: false,
       iconTheme: iconTheme,

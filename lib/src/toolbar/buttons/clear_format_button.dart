@@ -5,6 +5,7 @@ import '../../l10n/extensions/localizations_ext.dart';
 import '../base_button/stateless_base_button.dart';
 import '../config/buttons/clear_format_options.dart';
 import 'quill_icon_button.dart';
+import 'package:nawat_mobile/core/theme/app_theme.dart';
 
 class QuillToolbarClearFormatButton extends QuillToolbarBaseButtonStateless {
   const QuillToolbarClearFormatButton({
@@ -36,6 +37,7 @@ class QuillToolbarClearFormatButton extends QuillToolbarBaseButtonStateless {
       icon: Icon(
         iconData(context),
         size: iconSize(context) * iconButtonFactor(context),
+        color: AppThemeConfig().iconPrimary,
       ),
       isSelected: false,
       onPressed: _sharedOnPressed,
