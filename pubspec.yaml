@@ -18,9 +18,7 @@ screenshots:
     path: example/assets/images/screenshot_4.png
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
-  flutter: ">=3.0.0"
-
+  sdk: ^3.5.0
 # The versions listed here indicate the minimum required for dependencies 
 # and do not affect those used in the client's application.
 # For more information, visit:
