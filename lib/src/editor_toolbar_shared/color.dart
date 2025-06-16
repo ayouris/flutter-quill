@@ -1,31 +1,39 @@
 import 'package:flutter/material.dart';
 
-Color hexToColor(String? hexString) {
-  if (hexString == null) {
-    return Colors.black;
-  }
-  final hexRegex = RegExp(r'([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$');
+/// Converts a 3-, 6-, or 8-digit hex string (with or without “#”) into a [Color].
+/// 
+/// Examples:
+///  - `'#03F'`      → opaque #0033FF  
+///  - `'abcdef'`    → opaque #ABCDEF  
+///  - `'80FF0000'`  → 50%-alpha red  
+Color hexToColor(String hexString) {
+  // Strip leading “#”, make uppercase
+  var hex = hexString.replaceFirst('#', '').toUpperCase();
 
-  hexString = hexString.replaceAll('#', '');
-  if (!hexRegex.hasMatch(hexString)) {
-    return Colors.black;
+  // Expand 3-char “ABC” → “AABBCC”
+  if (hex.length == 3) {
+    hex = hex.split('').map((c) => c + c).join();
   }
 
-  final buffer = StringBuffer();
-  if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
-  buffer.write(hexString);
-  return Color(int.tryParse(buffer.toString(), radix: 16) ?? 0xFF000000);
+  // If only RRGGBB is provided, default alpha to “FF”
+  if (hex.length == 6) {
+    hex = 'FF$hex';
+  }
+
+  // Now we must have 8 chars ARGB
+  assert(hex.length == 8, 'hex color must be 3, 6 or 8 hex digits long');
+  return Color(int.parse(hex, radix: 16));
 }
 
-// Without the hash sign (`#`).
-
-String colorToHex(Color color, {bool includeAlpha = true}) {
-  String toHex(int value) => value.toRadixString(16).padLeft(2, '0').toUpperCase();
-
-  final red = toHex(color.red);
-  final green = toHex(color.green);
-  final blue = toHex(color.blue);
-  final alpha = toHex(color.alpha);
-
-  return includeAlpha ? '$alpha$red$green$blue' : '$red$green$blue';
+/// Converts a [Color] into an 8-digit ARGB hex string (no “#”)  
+/// or, if [leadingHashSign] is true, prefixes it with “#”.
+/// 
+/// By default returns uppercase, e.g. `'80FF0000'` for 50% red.
+String colorToHex(Color color, {bool leadingHashSign = false}) {
+  final a = color.alpha.toRadixString(16).padLeft(2, '0');
+  final r = color.red  .toRadixString(16).padLeft(2, '0');
+  final g = color.green.toRadixString(16).padLeft(2, '0');
+  final b = color.blue .toRadixString(16).padLeft(2, '0');
+  final hex = (a + r + g + b).toUpperCase();
+  return leadingHashSign ? '#$hex' : hex;
 }
