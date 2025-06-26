@@ -120,20 +120,20 @@ class QuillSimpleToolbar extends StatelessWidget
               controller: controller,
               baseOptions: config.buttonOptions.base,
             ),
-          if (config.showSubscript)
-            QuillToolbarToggleStyleButton(
-              attribute: Attribute.subscript,
-              options: config.buttonOptions.subscript,
-              controller: controller,
-              baseOptions: config.buttonOptions.base,
-            ),
-          if (config.showSuperscript)
-            QuillToolbarToggleStyleButton(
-              attribute: Attribute.superscript,
-              options: config.buttonOptions.superscript,
-              controller: controller,
-              baseOptions: config.buttonOptions.base,
-            ),
+          // if (config.showSubscript)
+          //   QuillToolbarToggleStyleButton(
+          //     attribute: Attribute.subscript,
+          //     options: config.buttonOptions.subscript,
+          //     controller: controller,
+          //     baseOptions: config.buttonOptions.base,
+          //   ),
+          // if (config.showSuperscript)
+          //   QuillToolbarToggleStyleButton(
+          //     attribute: Attribute.superscript,
+          //     options: config.buttonOptions.superscript,
+          //     controller: controller,
+          //     baseOptions: config.buttonOptions.base,
+          //   ),
           if (config.showSmallButton)
             QuillToolbarToggleStyleButton(
               attribute: Attribute.small,
@@ -155,12 +155,12 @@ class QuillSimpleToolbar extends StatelessWidget
               isBackground: true,
               baseOptions: config.buttonOptions.base,
             ),
-          if (config.showClearFormat)
-            QuillToolbarClearFormatButton(
-              controller: controller,
-              options: config.buttonOptions.clearFormat,
-              baseOptions: config.buttonOptions.base,
-            ),
+          // if (config.showClearFormat)
+          //   QuillToolbarClearFormatButton(
+          //     controller: controller,
+          //     options: config.buttonOptions.clearFormat,
+          //     baseOptions: config.buttonOptions.base,
+          //   ),
           if (embedButtons != null)
             for (final builder in embedButtons)
               builder(
