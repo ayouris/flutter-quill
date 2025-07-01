@@ -5,6 +5,7 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart' as color_picker
 import '../../../document/style.dart';
 import '../../../editor_toolbar_shared/color.dart';
 import '../../../l10n/extensions/localizations_ext.dart';
+import 'package:nawat_mobile/core/theme/app_theme.dart';
 
 enum _PickerType {
   material,
@@ -19,6 +20,7 @@ class ColorPickerDialog extends StatefulWidget {
     required this.selectionStyle,
     super.key,
   });
+
   final bool isBackground;
 
   final bool isToggledColor;
@@ -48,114 +50,57 @@ class ColorPickerDialogState extends State<ColorPickerDialog> {
         TextEditingController(text: color_picker.colorToHex(selectedColor));
   }
 
+  List<Color> colors = [
+    Colors.black,
+    Colors.red,
+    Colors.pink,
+    Colors.purple,
+    Colors.deepPurple,
+    Colors.indigo,
+    Colors.blue,
+    Colors.lightBlue,
+    Colors.cyan,
+    Colors.teal,
+    Colors.green,
+    Colors.lime,
+    Colors.yellow,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(context.loc.selectColor),
-      actions: [
-        TextButton(
-            onPressed: () {
-              widget.onRequestChangeColor(context, selectedColor);
-              Navigator.of(context).pop();
-            },
-            child: Text(context.loc.ok)),
-      ],
-      backgroundColor: Theme.of(context).canvasColor,
+      title: Text(context.loc.selectColor,
+          style: TextStyle(color: AppThemeConfig().titleColor)),
+      backgroundColor: AppThemeConfig().backgroundColor,
       content: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      pickerType = _PickerType.material;
-                    });
-                  },
-                  child: Text(context.loc.material),
-                ),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      pickerType = _PickerType.color;
-                    });
-                  },
-                  child: Text(context.loc.color),
-                ),
-                TextButton(
-                  onPressed: () {
-                    widget.onRequestChangeColor(context, null);
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(context.loc.clear),
-                ),
-              ],
-            ),
             const SizedBox(height: 6),
-            Column(
-              children: [
-                if (pickerType == _PickerType.material)
-                  color_picker.MaterialPicker(
-                    pickerColor: selectedColor,
-                    onColorChanged: (color) {
-                      widget.onRequestChangeColor(context, color);
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                if (pickerType == _PickerType.color)
-                  color_picker.ColorPicker(
-                    pickerColor: selectedColor,
-                    onColorChanged: (color) {
-                      widget.onRequestChangeColor(context, color);
-                      hexController.text = colorToHex(color);
-                      selectedColor = color;
-                      colorBoxSetState(() {});
-                    },
-                  ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 100,
-                      height: 60,
-                      child: TextFormField(
-                        controller: hexController,
-                        onChanged: (value) {
-                          selectedColor = hexToColor(value);
-                          colorBoxSetState(() {});
+
+            Wrap(
+              children: colors
+                  .map(
+                    (element) => Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: InkWell(
+                        onTap: () {
+                          widget.onRequestChangeColor(context, element);
+                          Navigator.of(context).pop();
                         },
-                        decoration: InputDecoration(
-                          labelText: context.loc.hex,
-                          border: const OutlineInputBorder(),
+                        child: Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: element,
+                            shape: BoxShape.circle,
+                          ),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    StatefulBuilder(
-                      builder: (context, mcolorBoxSetState) {
-                        colorBoxSetState = mcolorBoxSetState;
-                        return Container(
-                          width: 25,
-                          height: 25,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.black45,
-                            ),
-                            color: selectedColor,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            )
+                  )
+                  .toList(),
+            ),
           ],
         ),
       ),
