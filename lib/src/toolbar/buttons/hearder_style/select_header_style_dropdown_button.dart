@@ -142,60 +142,70 @@ class _QuillToolbarSelectHeaderStyleDropdownButtonState
       );
     }
 
-    return MenuAnchor(
-      controller: _menuController,
-      alignmentOffset: const Offset(0, -220),
-      menuChildren: headerAttributes
-          .map(
-            (e) => MenuItemButton(
-              onPressed: () {
-                _onPressed(e);
-              },
-              child: Text(
-                _label(e),
-                style: TextStyle(
-                  color: AppThemeConfig().iconPrimary,
+    return MenuTheme(
+      data: MenuThemeData(
+        // MenuStyle lets you tweak every state (hovered, pressed, etc.).
+        style: MenuStyle(
+          backgroundColor: WidgetStateProperty.all(
+            AppThemeConfig().navBarColor, // ← your custom colour
+          ),
+        ),
+      ),
+      child: MenuAnchor(
+        controller: _menuController,
+        alignmentOffset: const Offset(0, -220),
+        menuChildren: headerAttributes
+            .map(
+              (e) => MenuItemButton(
+                onPressed: () {
+                  _onPressed(e);
+                },
+                child: Text(
+                  _label(e),
+                  style: TextStyle(
+                    color: AppThemeConfig().iconPrimary,
+                  ),
                 ),
               ),
-            ),
-          )
-          .toList(),
-      child: Builder(
-        builder: (context) {
-          final isMaterial3 = Theme.of(context).useMaterial3;
-          final child = Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                _label(_selectedItem),
-                style: widget.options.textStyle ??
-                    TextStyle(
-                      fontSize: iconSize / 1.15,
-                      color: AppThemeConfig().iconPrimary,
-                    ),
-              ),
-              Icon(
-                Icons.arrow_drop_down,
-                size: iconSize * iconButtonFactor,
-                color: AppThemeConfig().iconPrimary,
-              ),
-            ],
-          );
-          if (!isMaterial3) {
-            return RawMaterialButton(
-              onPressed: _onDropdownButtonPressed,
-              child: child,
+            )
+            .toList(),
+        child: Builder(
+          builder: (context) {
+            final isMaterial3 = Theme.of(context).useMaterial3;
+            final child = Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  _label(_selectedItem),
+                  style: widget.options.textStyle ??
+                      TextStyle(
+                        fontSize: iconSize / 1.15,
+                        color: AppThemeConfig().iconPrimary,
+                      ),
+                ),
+                Icon(
+                  Icons.arrow_drop_down,
+                  size: iconSize * iconButtonFactor,
+                  color: AppThemeConfig().iconPrimary,
+                ),
+              ],
             );
-          }
-          return QuillToolbarIconButton(
-            onPressed: _onDropdownButtonPressed,
-            icon: child,
-            isSelected: false,
-            iconTheme: iconTheme,
-            tooltip: tooltip,
-          );
-        },
+            if (!isMaterial3) {
+              return RawMaterialButton(
+                onPressed: _onDropdownButtonPressed,
+                child: child,
+              );
+            }
+            return QuillToolbarIconButton(
+              onPressed: _onDropdownButtonPressed,
+              icon: child,
+              isSelected: false,
+              iconTheme: iconTheme,
+              tooltip: tooltip,
+            );
+          },
+        ),
       ),
     );
   }
