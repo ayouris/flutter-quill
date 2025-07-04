@@ -47,6 +47,7 @@ class _QuillToolbarSelectHeaderStyleDropdownButtonState
   Attribute<dynamic> _selectedItem = Attribute.header;
 
   final _menuController = MenuController();
+
   @override
   void initState() {
     super.initState();
@@ -143,13 +144,19 @@ class _QuillToolbarSelectHeaderStyleDropdownButtonState
 
     return MenuAnchor(
       controller: _menuController,
+      alignmentOffset: const Offset(0, -220),
       menuChildren: headerAttributes
           .map(
             (e) => MenuItemButton(
               onPressed: () {
                 _onPressed(e);
               },
-              child: Text(_label(e)),
+              child: Text(
+                _label(e),
+                style: TextStyle(
+                  color: AppThemeConfig().iconPrimary,
+                ),
+              ),
             ),
           )
           .toList(),
