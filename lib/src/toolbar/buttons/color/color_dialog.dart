@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart' as color_picker
     show ColorPicker, MaterialPicker, colorToHex;
-
+import 'package:nawat_mobile/core/theme/app_theme.dart';
 import '../../../document/style.dart';
 import '../../../editor_toolbar_shared/color.dart';
 import '../../../l10n/extensions/localizations_ext.dart';
@@ -51,7 +51,7 @@ class ColorPickerDialogState extends State<ColorPickerDialog> {
   }
 
   List<Color> colors = [
-    Colors.black,
+    AppThemeConfig().titleColor,
     Colors.red,
     Colors.pink,
     Colors.purple,
