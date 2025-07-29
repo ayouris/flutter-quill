@@ -52,7 +52,7 @@ class ColorPickerDialogState extends State<ColorPickerDialog> {
 
   List<Color> colors = [
     Colors.white,
-    Colors.white,
+    Colors.black,
     Colors.red,
     Colors.pink,
     Colors.purple,
