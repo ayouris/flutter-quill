@@ -51,7 +51,8 @@ class ColorPickerDialogState extends State<ColorPickerDialog> {
   }
 
   List<Color> colors = [
-    AppThemeConfig().titleColor,
+    Colors.white,
+    Colors.white,
     Colors.red,
     Colors.pink,
     Colors.purple,
@@ -77,7 +78,6 @@ class ColorPickerDialogState extends State<ColorPickerDialog> {
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(height: 6),
-
             Wrap(
               children: colors
                   .map(
